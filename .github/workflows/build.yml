@@ -39,7 +39,7 @@ jobs:
         chmod a+w $PWD
         ls -lh /
         pwd
-        docker run -u root --rm --privileged --mount type=bind,src=$PWD,dst=/share --mount type=bind,src=/data,dst=/data --env-file env.list -e VERSION -e RELEASE -e EXTRA_NAME coderus/sailfishos-platform-sdk:$RELEASESDK /bin/bash -c "
+        docker run -u root --rm --privileged --mount type=bind,src=$PWD,dst=/share --env-file env.list -e VERSION -e RELEASE -e EXTRA_NAME coderus/sailfishos-platform-sdk:$RELEASESDK /bin/bash -c "
             /share/scripts/create-image.sh --release $RELEASE --version $VERSION ;"
 
     - name: Update release
