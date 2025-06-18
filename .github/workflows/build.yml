@@ -47,6 +47,8 @@ jobs:
         pwd
         ls
         find
-        gh release upload ${{ github.ref_name }} ./build/mic/sfe* --clobber
+        export VERSION=$(echo $GITHUB_REF_NAME | cut -d "-" -f 2)
+        sudo tar -cvjSf sailfish-release-halium-krypton-$VERSION.tar.bz2 ./build/mic/sfe*
+        gh release upload ${{ github.ref_name }} sailfish-release-halium-krypton-$VERSION.tar.bz2 --clobber
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
