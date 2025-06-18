@@ -47,6 +47,6 @@ jobs:
         pwd
         ls
         find
-        gh release upload ${{ github.ref_name }} output/*.7z --clobber
+        gh release upload ${{ github.ref_name }} /share/build/mic/sfe* --clobber
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
