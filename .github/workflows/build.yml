@@ -47,6 +47,7 @@ jobs:
         pwd
         ls
         export VERSION=$(echo $GITHUB_REF_NAME | cut -d "-" -f 2)
+        export RELEASE=$(echo $GITHUB_REF_NAME | cut -d "-" -f 3)
         sudo tar -cvjSf sailfish-release-halium-krypton-$RELEASE-$VERSION.tar.bz2 -C ./build/mic/sfe*/Jolla*/ .
         gh release upload ${{ github.ref_name }} sailfish-release-halium-krypton-$RELEASE-$VERSION.tar.bz2 --clobber
       env:
