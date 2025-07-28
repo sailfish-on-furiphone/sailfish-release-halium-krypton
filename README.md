@@ -19,7 +19,7 @@ mkdir sfos
 sudo mount /dev/mapper/droidian-sailfish sfos/
 cd sfos
 sudo rm -rf *
-tar -xvf --numeric-owner ../sailfish-releae-halium-krypton-<release>-<version>.tar.bz2
+sudo tar --numeric-owner -xvf ../sailfish-releae-halium-krypton-<release>-<version>.tar.bz2
 ```
 * Unmount and reboot
 ```
