@@ -20,10 +20,13 @@ sudo mount /dev/mapper/droidian-sailfish sfos/
 cd sfos
 sudo rm -rf *
 sudo tar --numeric-owner -xvf ../sailfish-releae-halium-krypton-<release>-<version>.tar.bz2
+* (TEMP) Rename boot.img
+```
+sudo mv boot/boot.img boot/boot.img-sfos
 ```
 * Unmount and reboot
 ```
 cd ..
-sudo umount sfos
+sudo umount /dev/droidian/droidian-sailfish
 sudo reboot
 ```
