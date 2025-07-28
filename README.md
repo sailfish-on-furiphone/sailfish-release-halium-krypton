@@ -9,3 +9,21 @@ Release build CI
 ```
 scp sailfish-releae-halium-krypton-<release>-<version>.tar.bz2 furios@furiphoneflx1:
 ```
+* 'ssh' to the phone
+```
+ssh furios@furiphoneflx1
+```
+* mount and enter the sailfish root partition
+```
+mkdir sfos
+sudo mount /dev/mapper/droidian-sailfish sfos/
+cd sfos
+sudo rm -rf *
+tar -xvf --numeric-owner ../sailfish-releae-halium-krypton-<release>-<version>.tar.bz2
+```
+* Unmount and reboot
+```
+cd ..
+sudo umount sfos
+sudo reboot
+```
