@@ -40,7 +40,7 @@ done
 [ -z "$DEVICE" ] && (echo "Device has to be specified with DEVICE= env" && exit -1)
 [ -z "$RELEASE" ] && (echo "Release has to be specified with --release option" && exit -1)
 
-RELEASEMAJMIN=${RELEASE:0:3}
+RELEASEMAJMIN=$(echo $RELEASE | cut -d '.' -f 1-2)
 
 case $VERSION in
     testing)
