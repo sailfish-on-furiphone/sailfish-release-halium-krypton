@@ -27,8 +27,6 @@ jobs:
         export RELEASE=$(echo $GITHUB_REF_NAME | cut -d "-" -f 3)
         export EXTRA_NAME=-$(echo $GITHUB_REF_NAME | cut -d "-" -f 4-)
         chmod a+w $PWD
-        ls -lh /
-        pwd
         docker run -u root --rm --privileged --mount type=bind,src=$PWD,dst=/share --env-file env.list -e VERSION -e RELEASE -e EXTRA_NAME coderus/sailfishos-platform-sdk:$RELEASESDK /bin/bash -c "
             /share/scripts/create-image.sh --release $RELEASE --version $VERSION ;"
 
