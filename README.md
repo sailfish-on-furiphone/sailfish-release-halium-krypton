@@ -16,18 +16,15 @@ ssh furios@furiphoneflx1
 * mount and enter the sailfish root partition
 ```
 mkdir sfos
-sudo mount /dev/mapper/droidian-sailfish sfos/
+sudo mkfs.ext4 /dev/mapper/furios-sailfish
+sudo mount /dev/mapper/furios-sailfish sfos/
 cd sfos
 sudo rm -rf *
-sudo tar --numeric-owner -xvf ../sailfish-releae-halium-krypton-<release>-<version>.tar.bz2
-```
-* (TEMP) Rename boot.img
-```
-sudo mv boot/boot.img boot/boot.img-sfos
+sudo tar --numeric-owner --strip-components=2 -xvf ../sailfish-release-halium-krypton-<release>.tar.bz2 
 ```
 * Unmount and reboot
 ```
 cd ..
-sudo umount /dev/droidian/droidian-sailfish
+sudo umount /dev/mapper/fusios-sailfish
 sudo reboot
 ```
