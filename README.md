@@ -3,7 +3,7 @@
 Release build CI
 
 ## Preparation
-* Install bootman gui on the device 
+* Install bootman gui on the device  
   apt-get install furios-app-bootman
 * Open bootman from the launcher
 * Click + to add a partition for sailfish
