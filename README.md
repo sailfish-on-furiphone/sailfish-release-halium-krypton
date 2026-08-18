@@ -2,6 +2,17 @@
 
 Release build CI
 
+## Preparation
+* Install bootman gui on the device
+  apt-get install furios-app-bootman
+* Open bootman from the launcher
+* Click + to add a partition for sailfish
+* Set the install name to
+  sailfish
+* Set the install size to at least 30gb
+* Click 'apply'
+* Reboot the phone to have bootman create the partition
+
 ## Installation
 * Download latest .tar.bz2 from https://github.com/sailfish-on-furiphone/sailfish-release-halium-krypton/releases
 * Boot phone into FuriOS
