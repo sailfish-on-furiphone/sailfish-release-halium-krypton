@@ -7,7 +7,7 @@ Release build CI
   apt-get install furios-app-bootman
 * Open bootman from the launcher
 * Click + to add a partition for sailfish
-* Set the install name to 
+* Set the install name to  
   sailfish
 * Set the install size to at least 30gb
 * Click 'apply'
