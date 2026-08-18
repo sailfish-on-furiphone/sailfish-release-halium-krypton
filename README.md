@@ -35,6 +35,6 @@ sudo tar --numeric-owner --strip-components=2 -xvf ../sailfish-release-halium-kr
 * Unmount and reboot
 ```
 cd ..
-sudo umount /dev/mapper/fusios-sailfish
+sudo umount /dev/mapper/furios-sailfish
 sudo reboot
 ```
