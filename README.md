@@ -30,7 +30,6 @@ mkdir sfos
 sudo mkfs.ext4 /dev/mapper/furios-sailfish
 sudo mount /dev/mapper/furios-sailfish sfos/
 cd sfos
-sudo rm -rf *
 sudo tar --numeric-owner --strip-components=2 -xvf ../sailfish-release-halium-krypton-<release>.tar.bz2 
 ```
 * Unmount and reboot
