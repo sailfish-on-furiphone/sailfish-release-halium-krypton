@@ -10,14 +10,18 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                git fetch --all --tags
             }
         }
 
+        stage('Fetch Tags') {
+            steps {
+                sh 'git fetch --tags'
+            }
+        
         stage('Build mic') {
             steps {
                 sh '''
-                    TAG_NAME=$(git tag --sort=-creatordate | head -n 1 2>/dev/null || echo "$GIT_BRANCH")
+                    TAG_NAME=$(git tag --sort=-creatordate | head -n 1)
                     export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
                     export EXTRA_NAME=-$(echo $TAG_NAME | cut -d "-" -f 4-)
