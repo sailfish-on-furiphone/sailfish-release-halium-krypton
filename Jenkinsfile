@@ -32,26 +32,11 @@ pipeline {
                 '''
             }
         }
-
-        stage('Package artifact') {
-            steps {
-                sh '''
-                    TAG_NAME=$(git describe --tags --exact-match 2>/dev/null || echo "$GIT_BRANCH")
-                    export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
-                    export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
-                    export EXTRA_NAME=$(echo $TAG_NAME | cut -d "-" -f 4-)
-
-                    ARTIFACT=sailfish-release-halium-krypton-$RELEASE-$VERSION-$EXTRA_NAME.tar.bz2
-
-                    tar -cvjSf $ARTIFACT -C ./build/mic/sfe*/ .
-                '''
-            }
-        }
     }
 
     post {
         success {
-            archiveArtifacts artifacts: '*.tar.bz2', fingerprint: true
+            archiveArtifacts artifacts: './build/mic/*.tar.bz2', fingerprint: true
         }
     }
 }
