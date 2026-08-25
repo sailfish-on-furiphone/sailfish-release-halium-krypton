@@ -43,7 +43,7 @@ pipeline {
 
                     ARTIFACT=sailfish-release-halium-krypton-$RELEASE-$VERSION-$EXTRA_NAME.tar.bz2
 
-                    sudo tar -cvjSf $ARTIFACT -C ./build/mic/sfe*/ .
+                    tar -cvjSf $ARTIFACT -C ./build/mic/sfe*/ .
                 '''
             }
         }
