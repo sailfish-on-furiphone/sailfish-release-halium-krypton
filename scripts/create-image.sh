@@ -59,6 +59,7 @@ TMPWORKDIR=/tmp/create-image
 mkdir -p $TMPWORKDIR
 
 OUTPUTDIR=$(pwd)/mic
+rm -rf $OUTPUTDIR
 mkdir -p $OUTPUTDIR
 
 echo "Downloading from $URL/repodata/repomd.xml"
