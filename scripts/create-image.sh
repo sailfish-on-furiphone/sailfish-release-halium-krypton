@@ -89,3 +89,6 @@ mic create fs --arch=$PORT_ARCH \
  --record-pkgs=name,url \
  --outdir=$OUTPUTDIR/sfe-$DEVICE-$RELEASE$EXTRA_NAME \
  $OUTPUTDIR/Jolla-\@RELEASE\@-$DEVICE-$VERSION-\@ARCH\@.ks 
+
+ ARTIFACT=sailfish-release-halium-krypton-$RELEASE-$VERSION-$EXTRA_NAME.tar.bz2
+ tar -cvjSf $OUTPUTDIR/$ARTIFACT -C $OUTPUTDIR/sfe-$DEVICE-$RELEASE$EXTRA_NAME
