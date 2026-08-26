@@ -36,7 +36,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: './build/mic/*.tar.bz2', fingerprint: true
+            archiveArtifacts artifacts: 'build/mic/*.tar.bz2', fingerprint: true
         }
     }
 }
