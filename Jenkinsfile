@@ -16,7 +16,7 @@ pipeline {
         stage('Build mic') {
             steps {
                 sh '''
-                    TAG_NAME=$(git describe --tags --exact-match 2>/dev/null || echo "$GIT_BRANCH")
+                    TAG_NAME=$(git --no-pager tag --points-at HEAD --sort -v:refname 2>/dev/null || echo "$GIT_BRANCH")
                     export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
                     export EXTRA_NAME=-$(echo $TAG_NAME | cut -d "-" -f 4-)
