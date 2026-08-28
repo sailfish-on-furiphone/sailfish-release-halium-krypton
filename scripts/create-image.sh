@@ -44,7 +44,7 @@ RELEASEMAJMIN=$(echo $RELEASE | cut -d '.' -f 1-2)
 
 case $VERSION in
     testing)
-		URL=http://repo.sailfishos.org/obs/nemo:/testing:/hw:/$VENDOR:/$DEVICE:/$RELEASE/sailfish_${RELEASE}_$PORT_ARCH/
+		URL=http://repo.sailfishos.org/obs/nemo:/testing:/hw:/$VENDOR:/$DEVICE:/$RELEASEMAJMIN/sailfishos_${RELEASEMAJMIN}_$PORT_ARCH/
 		;;
     devel)
 		URL=http://repo.sailfishos.org/obs/nemo:/devel:/hw:/$VENDOR:/$DEVICE/sailfish_latest_$PORT_ARCH
