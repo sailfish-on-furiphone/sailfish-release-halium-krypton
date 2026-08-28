@@ -21,6 +21,11 @@ pipeline {
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
                     export EXTRA_NAME=-$(echo $TAG_NAME | cut -d "-" -f 4-)
 
+                    if [[ "$VERSION" != "testing" ]]; then
+                        echo "Refusing to build non testing version on jenkins"
+                        exit 1
+                    fi
+
                     chmod a+w $PWD
 
                     docker run -u root --rm --privileged \
