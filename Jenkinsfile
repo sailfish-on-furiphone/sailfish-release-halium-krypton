@@ -37,11 +37,25 @@ pipeline {
                 '''
             }
         }
+
+        stage('Generate MD5') {
+            steps {
+                sh '''
+                    TAG_NAME=$(git --no-pager tag --points-at HEAD --sort -v:refname 2>/dev/null || echo "$GIT_BRANCH")
+                    export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
+                    export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
+                    export EXTRA_NAME=-$(echo $TAG_NAME | cut -d "-" -f 4-)
+
+                    md5sum "build/mic/*.tar.bz2" | awk '{print $1}' > "build/mic/sailfish-release-halium-krypton-$RELEASE-$VERSION-$EXTRA.tar.bz2.md5"
+
+                '''
+            }
+        }
     }
 
     post {
         success {
-            archiveArtifacts artifacts: 'build/mic/*.tar.bz2', fingerprint: true
+            archiveArtifacts artifacts: 'build/mic/*.tar.bz2*', fingerprint: true
         }
     }
 }
