@@ -90,7 +90,7 @@ mic create fs --arch=$PORT_ARCH \
  --outdir=$OUTPUTDIR/sfe-$DEVICE-$RELEASE$EXTRA_NAME \
  $OUTPUTDIR/Jolla-\@RELEASE\@-$DEVICE-$VERSION-\@ARCH\@.ks 
 
- ARTIFACT=sailfish-release-halium-krypton-$RELEASE-$VERSION$EXTRA_NAME.tar.bz2
- ls $OUTPUTDIR
- echo Artifact: $ARTIFACT
- tar -cvjSf $OUTPUTDIR/$ARTIFACT -C $OUTPUTDIR/sfe-* .
+ARTIFACT=sailfish-release-halium-krypton-$RELEASE-$VERSION$EXTRA_NAME.tar.bz2
+tar -cvjSf $OUTPUTDIR/$ARTIFACT -C $OUTPUTDIR/sfe-* .
+
+md5sum $OUTPUTDIR/$ARTIFACT | awk '{print $1}' > "$OUTPUTDIR/$ARTIFACT.md5"
