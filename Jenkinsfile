@@ -6,25 +6,19 @@ pipeline {
     }
 
     stages {
-
-        stage('Pre') {
-            steps {
-                sh '''
-                    mkdir work
-                    cd work
-                '''
-            }
-        }
         
         stage('Checkout') {
             steps {
-                checkout scm
+                dir('work') {
+                    checkout scm
+                }
             }
         }
 
         stage('Build mic') {
             steps {
                 sh '''
+                    cd work
                     TAG_NAME=$(git --no-pager tag --points-at HEAD --sort -v:refname 2>/dev/null || echo "$GIT_BRANCH")
                     export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
@@ -50,7 +44,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'build/mic/*.tar.bz2*', fingerprint: true
+            archiveArtifacts artifacts: 'work/build/mic/*.tar.bz2*', fingerprint: true
         }
     }
 }
