@@ -6,19 +6,22 @@ pipeline {
     }
 
     stages {
-        
+        stage('delete files from workspace') {
+            steps {
+                sh 'ls -l'
+                sh 'sudo rm -rf ./*'
+              }
+        }    
+                
         stage('Checkout') {
             steps {
-                dir('work') {
-                    checkout scm
-                }
+                checkout scm
             }
         }
 
         stage('Build mic') {
             steps {
                 sh '''
-                    cd work
                     TAG_NAME=$(git --no-pager tag --points-at HEAD --sort -v:refname 2>/dev/null || echo "$GIT_BRANCH")
                     export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
@@ -44,7 +47,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'work/build/mic/*.tar.bz2*', fingerprint: true
+            archiveArtifacts artifacts: 'build/mic/*.tar.bz2*', fingerprint: true
         }
     }
 }
