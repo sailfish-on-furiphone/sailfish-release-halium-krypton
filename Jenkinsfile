@@ -6,22 +6,30 @@ pipeline {
     }
 
     stages {
-        stage('delete files from workspace') {
-            steps {
-                sh 'ls -l'
-                sh 'sudo rm -rf ./*'
-              }
-        }    
+        options {
+            // Prevent Jenkins from automatically checking out the code in the root workspace
+            skipDefaultCheckout true
+        }
                 
         stage('Checkout') {
             steps {
-                checkout scm
+                dir('workdir') {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Verify Checkout') {
+            steps {
+                // Verify that the files exist in the sub-folder
+                sh 'ls -la workdir'
             }
         }
 
         stage('Build mic') {
             steps {
                 sh '''
+                cd workdir
                     TAG_NAME=$(git --no-pager tag --points-at HEAD --sort -v:refname 2>/dev/null || echo "$GIT_BRANCH")
                     export VERSION=$(echo $TAG_NAME | cut -d "-" -f 2)
                     export RELEASE=$(echo $TAG_NAME | cut -d "-" -f 3)
@@ -47,7 +55,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'build/mic/*.tar.bz2*', fingerprint: true
+            archiveArtifacts artifacts: 'workdir/build/mic/*.tar.bz2*', fingerprint: true
         }
     }
 }
