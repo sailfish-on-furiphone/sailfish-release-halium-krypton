@@ -5,11 +5,12 @@ pipeline {
         RELEASESDK = "5.0.0.43"
     }
 
+    options {
+        // Prevent Jenkins from automatically checking out the code in the root workspace
+        skipDefaultCheckout true
+    }
+    
     stages {
-        options {
-            // Prevent Jenkins from automatically checking out the code in the root workspace
-            skipDefaultCheckout true
-        }
                 
         stage('Checkout') {
             steps {
