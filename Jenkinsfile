@@ -7,6 +7,15 @@ pipeline {
 
     stages {
 
+        stage('Pre') {
+            steps {
+                sh '''
+                    mkdir work
+                    cd work
+                '''
+            }
+        }
+        
         stage('Checkout') {
             steps {
                 checkout scm
